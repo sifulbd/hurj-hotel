@@ -5,7 +5,7 @@ import firebaseConfig from "./firebaseConfig";
 import {UserContext} from "../../App";
 import { useHistory, useLocation } from 'react-router-dom';
 const Login = () => {
-    const [logggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [user, setuser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
@@ -18,7 +18,7 @@ const Login = () => {
         firebase.auth().signInWithPopup(provider).then(function(result) {
             const{displayName, email} = result.user;
             const singnedInUser = {name: displayName, email}
-            setLoggedInUser(singnedInUser);
+            setuser(singnedInUser);
             history.replace(from);
             // ...
             }).catch(function(error) {

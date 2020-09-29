@@ -6,9 +6,9 @@ const Category = () => {
     const [category, setCategory] = useContext(CatergoryContent);
     return (
         <div>
-            <button onClick={ ()=> setCategory('single')}> Power </button>
-            <button onClick={ ()=> setCategory('double')} >nonPower</button>
-            <button onClick={ ()=> setCategory('family')} >anotherPower</button>
+            <button onClick={ ()=> setCategory('single')}> Single Room </button>
+            <button onClick={ ()=> setCategory('double')} >Double Room</button>
+            <button onClick={ ()=> setCategory('family')} >Family Room</button>
             
         </div>
     );

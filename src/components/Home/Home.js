@@ -5,11 +5,14 @@ import CategoryDetails from '../CategoryDetails/CategoryDetails';
 
 const Home = () => {
     const [category, setCategory] = useContext(CatergoryContent);
+    
     const [products, setProducts] = useState([]);
+
     useEffect(() =>{
         const matchProducts = rooms.filter(pd => pd.bedType === category && category.toLowerCase());
         setProducts(matchProducts);
-    }, [category])
+    }, [category]);
+
     const style = {
         display: 'flex',
         margin: '40px',
