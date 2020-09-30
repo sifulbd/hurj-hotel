@@ -27,7 +27,7 @@ const Book = () => {
     const handleCheckOutDate = (date) => {
         const newDates = {...selectedDate}
         newDates.checkOutDate = date;
-        setSelectedDate(newDates)
+        setSelectedDate(newDates) 
     };
 
     return (
