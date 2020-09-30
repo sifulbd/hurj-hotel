@@ -8,7 +8,7 @@ const CategoryDetails = (props) => {
 
     return (
         <div>
-            This is CategoryDetails 
+            <h2> This is CategoryDetails </h2>
         </div>
     );
 };

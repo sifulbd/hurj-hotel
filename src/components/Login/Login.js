@@ -4,6 +4,7 @@ import "firebase/auth";
 import firebaseConfig from "./firebaseConfig";
 import {UserContext} from "../../App";
 import { useHistory, useLocation } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 const Login = () => {
     const [user, setuser] = useContext(UserContext);
     const history = useHistory();
@@ -19,7 +20,7 @@ const Login = () => {
             const{displayName, email} = result.user;
             const singnedInUser = {name: displayName, email}
             setuser(singnedInUser);
-            history.replace(from);
+            storeAuth();
             // ...
             }).catch(function(error) {
             // Handle Errors here.
@@ -32,10 +33,22 @@ const Login = () => {
             // ...
         });
     }
+
+    const storeAuth = () => {
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+        .then(function(idToken) {
+            sessionStorage.setItem('token', idToken)
+            history.replace(from);
+          }).catch(function(error) {
+            // Handle error
+        });
+    }
     return (
         <div>
-            <h1>This is Login</h1>
-            <button onClick={handglegoogleSingin}>SignIn with Google</button>
+            <Container fixed>
+                <h1>Login for Booking</h1>
+                <button onClick={handglegoogleSingin}>SignIn with Google</button>
+            </Container>
         </div>
     );
 };

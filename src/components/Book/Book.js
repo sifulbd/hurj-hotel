@@ -7,6 +7,8 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { Button, Container } from '@material-ui/core';
+import Bookings from '../Bookings/Bookings';
 
 const Book = () => {
     const {bedType} = useParams();
@@ -29,6 +31,16 @@ const Book = () => {
         newDates.checkOutDate = date;
         setSelectedDate(newDates) 
     };
+    const handleBtnClick = () => {
+        const newBooking = {...user, ...selectedDate}
+        fetch('http://localhost:5000/addBooking', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newBooking)
+        })
+        .then(res => res.json()
+        .then(data => console.log(data))
+    )}
 
     return (
         <div style={{textAlign: 'center'}}>
@@ -64,6 +76,12 @@ const Book = () => {
                     />
                 </Grid>
             </MuiPickersUtilsProvider>
+
+            <Button className="btn" variant="contained" color="secondary" onClick={handleBtnClick}>Confirm Booking</Button>
+
+            <Container>
+                    <Bookings></Bookings>
+            </Container>
         </div>
     );
 };
